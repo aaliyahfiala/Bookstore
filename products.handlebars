@@ -1,0 +1,41 @@
+<h1>Current Products:</h1>
+
+{{#each foo}}
+{{this}}
+{{/each}}
+<table>
+    <thead> 
+        <th>ID</th>
+	<th>Name</th> 
+        <th>Category</th> 
+        <th>Author</th>
+        <th>Quantity</th>
+	<th>Condition</th>
+	<th>Price</th>  
+    </thead> 
+    <tbody> 
+        {{#each products}} 
+        <tr> 
+            <td>{{id}}</td> 
+            <td>{{Name}}</td> 
+            <td>{{Category}}</td> 
+            <td>{{Author}}</td>
+	    <td>{{Quantity}}</td>
+	    <td>{{Condition}}</td>
+	    <td>{{Price}}</td>
+            <td><button onclick="deleteProduct({{id}})">Delete</button></td>
+            <td><a href="/products/{{id}}">Update</a></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    <form id="addproduct" action="/products" method="post">
+    Name: <input type="text" name="Name"><br>
+    Category: <input type="text" name="Category"><br>
+    Author: <input type="text" name="Author"><br>
+    Quantity: <input type="text" name="Quantity"><br>
+    Condition: <input type="text" name="Condition"><br>
+    Price: <input type="text" name="Price"><br> 
+
+    <input type="submit" value="Submit">
+    </form>
+</table> 
