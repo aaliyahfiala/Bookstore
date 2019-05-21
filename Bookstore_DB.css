@@ -1,0 +1,115 @@
+/*Bookstore DB Style Sheet
+
+/*
+
+Name: Jake Seawell & Aaliyah Fiala
+Date: 5/6/19
+Description: This is the stylesheet for our Bookstore Database Webpage
+
+*/
+
+html {
+    
+}
+/*****************************/
+
+/* Menu Buttons (Links) **************/
+a {
+  background-color: darkgoldenrod;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  animation: fadeEffect 4s;
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+/*****************************/
+
+/* Main Body* ****************/
+body {
+    background: black;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 22px;
+    color: #919191;
+    line-height: 1.25;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1em 1em 1em;
+}
+/*****************************/
+
+
+/* Page Headers **************/
+#Home {
+    margin-left: 43%;
+}
+
+h1 {
+    text-align: right;
+}
+
+h3 {
+    text-align: center;
+}
+/*****************************/
+
+p {
+   text-indent: 2em; 
+}
+
+p.centered {
+   text-align: center; 
+}
+
+form {
+    align-content: center;
+    margin-left: 35%;
+}
+
+/* Table Headers **************/
+th {
+    background-color: darkgoldenrod;
+    color: white;
+}
+/*****************************/
+
+table {
+   position: relative;
+   width: 100%;
+   align-content: center;
+   text-align: center;
+}
+
+
+/****** Buttons  **************/
+#Menu_Buttons {
+    width: 100%;
+    text-align: center;
+}
+
+#Table_Menu_Buttons {
+    font-size: 12pt;
+    width: 100%;
+    text-align: center;
+}
+
+#Table_Buttons {
+    width: 100%;
+    text-align: center;
+}
+
+#Add, #Modify, #Remove, #Search {
+    background-color: darkgoldenrod;
+    color: white;
+    align-content: center;
+    margin: 2%;
+}
+
+#Sort_Asc, #Sort_Desc {
+    display: inline-block;
+}
+/*****************************/
