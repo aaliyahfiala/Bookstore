@@ -1,4 +1,4 @@
-<h1>Update {{products.Name}}:</h1>
+<h1>Update "{{products.Name}}":</h1>
 <form id="update-product" action="/products" method="post">
     Name: <input type="text" name="Name" value="{{products.Name}}"><br>
     Category: <input type="text" name="Category" value="{{products.Category}}"><br>
@@ -10,6 +10,5 @@
 
     Price: <input type="text" name="Price" value="{{products.Price}}"><br>
 
-
-</form>
 <button onclick="updateProduct({{products.id}})">Update</button>
+</form>

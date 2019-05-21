@@ -1,0 +1,9 @@
+<h2>Update Sale #"{{sales.id}}":</h2>
+<form id="update-sale" action="/sales" method="post">
+    Bookstore ID: <input type="text" name="Bookstore_id" value="{{sales.Bookstore_id}}"><br>
+    Customer ID: <input type="text" name="Customer_id" value="{{sales.Customer_id}}"><br>
+    Sale Price: <input type="text" name="Sale_Price" value="{{sales.Sale_Price}}"><br>
+    Sale Date: <input type="text" name="Sale_Date" value="{{sales.Sale_Date}}"><br>
+    
+<button onclick="updateSale({{sales.id}})">Update</button>
+</form>

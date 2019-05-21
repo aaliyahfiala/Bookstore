@@ -2,78 +2,79 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getProducts(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product`", function(error, results, fields){
+    
+    function getBookstores(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore`", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.products = results;
+            context.bookstores = results;
             complete();
         });
     }
 
-    function getProduct(res, mysql, context, id, complete){
-        var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE id = ?";
+    function getBookstore(res, mysql, context, id, complete){
+        var sql = "SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore` WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.products = results[0];
+            context.bookstores = results[0];
             complete();
         });
     }
 
-    /*Display all products. Requires web based javascript to delete users with AJAX*/
+    /*Display all stores. Requires web based javascript to delete users with AJAX*/
 
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteproduct.js"];
+        context.jsscripts = ["deletebookstore.js"];
         var mysql = req.app.get('mysql');
-        getProducts(res, mysql, context, complete);
-        //getPlanets(res, mysql, context, complete);
+        getBookstores(res, mysql, context, complete);
+        
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('products', context);
+                res.render('bookstores', context);
             }
 
         }
     });
 
-    /* Display one product for the specific purpose of updating products */
+    /* Display one store for the specific purpose of updating stores */
 
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedproduct.js", "updateproduct.js"];
+        context.jsscripts = ["selectedbookstore.js", "updatebookstore.js"];
         var mysql = req.app.get('mysql');
-        getProduct(res, mysql, context, req.params.id, complete);
-        //getPlanets(res, mysql, context, complete);
+        getBookstore(res, mysql, context, req.params.id, complete);
+    
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('update-product', context);
+                res.render('update-bookstore', context);
             }
 
         }
     });
 
-    /* Adds a product, redirects to the people page after adding */
+    /* Adds a bookstore, redirects to the people page after adding */
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO `Product` (`Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price`) VALUES (?,?,?,?,?,?)";
-        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price];
+        var sql = "INSERT INTO `Bookstore` (`Name`, `Location`, `Type`) VALUES (?,?,?)";
+        var inserts = [req.body.Name, req.body.Location, req.body.Type];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/products');
+                res.redirect('/bookstores');
             }
         });
     });
@@ -82,8 +83,8 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE `Product` SET `Name`=?, `Category`=?, `Author`=?, `Quantity`=?, `Condition`=?, `Price`=? WHERE id=?";
-        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price, req.params.id];
+        var sql = "UPDATE `Bookstore` SET `Name`=?, `Location`=?, `Type`=? WHERE id=?";
+        var inserts = [req.body.Name, req.body.Location, req.body.Type, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -99,7 +100,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM `Product` WHERE id = ?";
+        var sql = "DELETE FROM `Bookstore` WHERE id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
