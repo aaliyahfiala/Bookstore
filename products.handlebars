@@ -3,8 +3,9 @@
 <a href="/customers">Customers</a>
 <a href="/sales">Sales</a>
 <a href="/products_bookstores">Product:Bookstore</a>
+<a href="/products_sales">Product:Sale</a>
 
-<h2>Products</h2>
+<h1>Products</h1>
 
 {{#each foo}}
 {{this}}
@@ -12,13 +13,13 @@
 <table border=1px >
     <thead> 
         <th>ID:</th>
-	<th>Name</th> 
+	    <th>Name</th> 
         <th>Category</th> 
         <th>Author</th>
         <th>Quantity</th>
-	<th>Condition</th>
-	<th>Price</th>
-	<th>Edit</th>  
+	    <th>Condition</th>
+	    <th>Price</th>
+	    <th>Edit</th>  
     </thead> 
     <tbody> 
         <tr>
@@ -37,9 +38,9 @@
             <td>{{Name}}</td> 
             <td>{{Category}}</td> 
             <td>{{Author}}</td>
-	    <td>{{Quantity}}</td>
-	    <td>{{Condition}}</td>
-	    <td>{{Price}}</td>
+            <td>{{Quantity}}</td>
+            <td>{{Condition}}</td>
+            <td>{{Price}}</td>
             <td><a id="Modify" href="/products/{{id}}">Update</a><button id="Remove" onclick="deleteProduct({{id}})">Delete</button></td>
         </tr> 
         {{/each}} 
@@ -51,11 +52,26 @@
 
     <form id="addproduct" action="/products" method="post">
     	Name: <input type="text" name="Name"><br>
-    	Category: <input type="text" name="Category"><br>
+    	
+        <label>Category:</label>
+                <select name = "Category">
+                    <option name = Category value = "Novel">Novel</option>
+                    <option name = Category value = "Short Story">Short Story</option>
+                    <option name = Category value = "Book on CD/Tape">Book on CD/Tape</option>
+                    <option name = Category value = "DVD">DVD</option>
+                    <option name = Category value = "Magazine">Magazine</option>
+                    <option name = Category value = "Picture Book">Picture Book</option>
+                    <option name = Category value = "Other">Other</option>
+                </select><br>
+        
     	Author: <input type="text" name="Author"><br>
-    	Quantity: <input type="text" name="Quantity"><br>
-    	Condition: <input type="text" name="Condition"><br>
-    	Price: <input type="text" name="Price"><br> 
+    	Quantity: <input type="number" name="Quantity" default=1 min=1 max=99><br>
+    	
+        Condition:
+        <input type="radio" name="Condition" value="New" checked>New
+        <input type="radio" name="Condition" value="Used">Used<br>
+    	
+        Price: <input type="number" name="Price" min=0 step=".01"><br> 
 
     	<button type="submit" value="Submit">Add Product</button>
     </form>

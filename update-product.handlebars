@@ -1,14 +1,27 @@
 <h1>Update "{{products.Name}}":</h1>
-<form id="update-product" action="/products" method="post">
+<form id="update-product">
     Name: <input type="text" name="Name" value="{{products.Name}}"><br>
-    Category: <input type="text" name="Category" value="{{products.Category}}"><br>
+    
+    <label>Category:</label>
+                <select name = "Category">
+                    <option name = Category value = "Novel">Novel</option>
+                    <option name = Category value = "Short Story">Short Story</option>
+                    <option name = Category value = "Book on CD/Tape">Book on CD/Tape</option>
+                    <option name = Category value = "DVD">DVD</option>
+                    <option name = Category value = "Magazine">Magazine</option>
+                    <option name = Category value = "Picture Book">Picture Book</option>
+                    <option name = Category value = "Other">Other</option>
+                </select><br>
+    
     Author: <input type="text" name="Author" value="{{products.Author}}"><br>
 
-    Quantity: <input type="text" name="Quantity" value="{{products.Quantity}}"><br>
+    Quantity: <input type="number" name="Quantity" min=1 default=1 value="{{products.Quantity}}"><br>
 
-    Condition: <input type="text" name="Condition" value="{{products.Condition}}"><br>
+    Condition: 
+        <input type="radio" name="Condition" value="New" checked>New
+        <input type="radio" name="Condition" value="Used">Used<br>
 
-    Price: <input type="text" name="Price" value="{{products.Price}}"><br>
+    Price: <input type="number" name="Price" min=0 step=".01" value="{{products.Price}}"><br>
 
 <button onclick="updateProduct({{products.id}})">Update</button>
 </form>

@@ -1,7 +1,12 @@
-<h1>Update {{bookstores.Name}}:</h1>
-<form id="update-bookstore" action="/bookstores" method="post">
+<h1>Update "{{bookstores.Name}}":</h1>
+<form id="update-bookstore">
     Name: <input type="text" name="Name" value="{{bookstores.Name}}"><br>
-    Location: <input type="text" name="Category" value="{{bookstores.Location}}"><br>
-    Type: <input type="text" name="Author" value="{{bookstores.Type}}"><br>
-</form>
+    Location: <input type="text" name="Location" value="{{bookstores.Location}}"><br>
+    Type:
+        <input type="radio" name="Type" value="New" checked>New
+        <input type="radio" name="Type" value="Used">Used
+        <input type="radio" name="Type" value="Both">Both<br>
+    
 <button onclick="updateBookstore({{bookstores.id}})">Update</button>
+</form>
+

@@ -21,7 +21,9 @@ app.use('/products', require('./products.js'));
 app.use('/bookstores', require('./bookstores.js'));
 app.use('/customers', require('./customers.js'));
 app.use('/sales', require('./sales.js'));
-app.use('/home', require('./home.js'));
+app.use('/products_bookstores', require('./products_bookstores.js'));
+app.use('/products_sales', require('./products_sales.js'));
+
 
 app.use(function(req,res){
   res.status(404);

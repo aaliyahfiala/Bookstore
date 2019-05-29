@@ -1,0 +1,7 @@
+<h1>Update <br>"{{products_sales.pName}}" : "{{products_sales.sName}}" <br> relationship:</h1>
+<form id="update-product_sale">
+    Product ID: <input type="number" name="product_id" min=1 value="{{products_sales.pName}}"><br>
+    Sale ID: <input type="number" name="sale_id" min=1 value="{{products_sales.sName}}"><br>
+
+<button onclick="updateProduct_Sale({{products_sales.pid}}, {{products_sales.sid}})">Update</button>
+</form>

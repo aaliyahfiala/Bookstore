@@ -1,3 +1,3 @@
-function selectProduct_Bookstore(id){
-    $("#product_bookstore-selector").val(id);
+function selectProduct_Bookstore(pid, bid){
+    $("#product_bookstore-selector").val(pid, bid);
 }

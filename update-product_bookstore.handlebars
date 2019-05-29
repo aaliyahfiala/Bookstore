@@ -1,7 +1,7 @@
-<h1>Update relationship#"{{products_bookstores.id}}":</h1>
-<form id="update-product_bookstore" action="/products_bookstores" method="post">
-    Product ID: <input type="text" name="product_id" value="{{products_bookstores.product_id}}"><br>
-    Bookstore ID: <input type="text" name="bookstore_id" value="{{products_bookstores.bookstore_id}}"><br>
+<h1>Update <br>"{{products_bookstores.pName}}" : "{{products_bookstores.bName}}" <br> relationship:</h1>
+<form id="update-product_bookstore">
+    Product ID: <input type="number" name="product_id" min=1 value="{{products_bookstores.pName}}"><br>
+    Bookstore ID: <input type="number" name="bookstore_id" min=1 value="{{products_bookstores.bName}}"><br>
 
-<button onclick="updateProduct_Bookstore({{products_bookstores.id}})">Update</button>
+<button onclick="updateProduct_Bookstore({{products_bookstores.pid}}, {{products_bookstores.bid}})">Update</button>
 </form>

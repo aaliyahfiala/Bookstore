@@ -5,7 +5,7 @@
 <a href="/products_bookstores">Product:Bookstore</a>
 <a href="/products_sales">Product:Sale</a>
 
-<h1>Product:Bookstore Relationships</h1>
+<h1>Product:Sale Relationships</h1>
 
 {{#each foo}}
 {{this}}
@@ -13,7 +13,7 @@
 <table border=1px >
     <thead> 
         <th>Product</th>
-	    <th>Bookstore</th> 
+	    <th>Sale</th> 
 	    <th>Edit</th>  
     </thead> 
     <tbody> 
@@ -22,11 +22,11 @@
 		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
 	</tr>
 
-	{{#each products_bookstores}} 
+	{{#each products_sales}} 
         <tr> 
             <td>{{pName}}</td> 
-            <td>{{bName}}</td> 
-            <td><button id="Remove" onclick="deleteProduct_Bookstore({{pid}},{{bid}})">Delete</button></td>
+            <td>{{sid}}</td> 
+            <td><button id="Remove" onclick="deleteProduct_Sale({{pid}},{{sid}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 
@@ -35,9 +35,9 @@
     <br>
 	<h3>Add New Relationship</h3>
 
-    <form id="addproduct_bookstore" action="/products_bookstores" method="post">
+    <form id="addproduct_sale" action="/products_sales" method="post">
     	Product ID: <input type="number" name="product_id" min=1><br>
-    	Bookstore ID: <input type="number" name="bookstore_id" min=1><br>
+    	Sale ID: <input type="number" name="sale_id" min=1><br>
     	
     	<button type="submit" value="Submit">Add Relationship</button>
     </form>

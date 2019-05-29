@@ -34,7 +34,6 @@ module.exports = function(){
         context.jsscripts = ["deleteproduct.js"];
         var mysql = req.app.get('mysql');
         getProducts(res, mysql, context, complete);
-        //getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -52,7 +51,6 @@ module.exports = function(){
         context.jsscripts = ["selectedproduct.js", "updateproduct.js"];
         var mysql = req.app.get('mysql');
         getProduct(res, mysql, context, req.params.id, complete);
-        //getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -84,6 +82,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE `Product` SET `Name`=?, `Category`=?, `Author`=?, `Quantity`=?, `Condition`=?, `Price`=? WHERE id=?";
         var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price, req.params.id];
+        console.log(inserts);
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

@@ -4,7 +4,7 @@ module.exports = function(){
 
     
     function getCustomers(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name` FROM `Customer`", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Address`, `Phone` FROM `Customer`", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -15,7 +15,7 @@ module.exports = function(){
     }
 
     function getCustomer(res, mysql, context, id, complete){
-        var sql = "SELECT `id`, `Name` FROM `Customer` WHERE id = ?";
+        var sql = "SELECT `id`, `Name`, `Address`, `Phone` FROM `Customer` WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -67,8 +67,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO `Customer` (`Name`) VALUES (?)";
-        var inserts = [req.body.Name];
+        var sql = "INSERT INTO `Customer` (`Name`, `Address`, `Phone`) VALUES (?,?,?)";
+        var inserts = [req.body.Name, req.body.Address, req.body.Phone];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -83,8 +83,8 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE `Customer` SET `Name`=? WHERE id=?";
-        var inserts = [req.body.Name, req.params.id];
+        var sql = "UPDATE `Customer` SET `Name`=?, `Address`=?, `Phone`=? WHERE id=?";
+        var inserts = [req.body.Name, req.body.Address, req.body.Phone, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
