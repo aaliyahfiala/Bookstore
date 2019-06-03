@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getSales(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Bookstore_id`, `Customer_id`, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale`", function(error, results, fields){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getSale(res, mysql, context, id, complete){
-        var sql = "SELECT `id`, `Bookstore_id`, `Customer_id`, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` WHERE id = ?";
+        var sql = "SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id WHERE Sale.id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

@@ -16,8 +16,8 @@
 <table border=1px >
     <thead> 
         <th>ID:</th>
-	    <th>Bookstore ID</th> 
-        <th>Customer ID</th> 
+	    <th>Bookstore</th> 
+        <th>Customer</th> 
         <th>Sale Price</th>
 	    <th>Date of Sale</th>
 	    <th>Edit</th>  
@@ -34,8 +34,8 @@
 	{{#each sales}} 
         <tr> 
             <td>{{id}}</td> 
-            <td>{{Bookstore_id}}</td> 
-            <td>{{Customer_id}}</td> 
+            <td>{{Bookstore_Name}}</td> 
+            <td>{{Customer_Name}}</td> 
 	        <td>{{Sale_Price}}</td>
 	        <td>{{Sale_Date}}</td>
             <td><a id="Modify" href="/sales/{{id}}">Update</a><button id="Remove" onclick="deleteSale({{id}})">Delete</button></td>
