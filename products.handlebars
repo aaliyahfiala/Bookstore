@@ -10,6 +10,25 @@
     <a href="/products_sales">Product:Sale</a>
 </div>
 
+<br>
+
+<form id="searchproducts" action="/products" method="post">
+    	Search Products for:<br>
+        <label>Attribute:</label>
+                <select name = "Attribute" required>
+                    <option name = Attribute value = "Name">Name</option>
+                    <option name = Attribute value = "Category">Category</option>
+                    <option name = Attribute value = "Author">Author</option>
+                    <option name = Attribute value = "Quantity">Quantity</option>
+                    <option name = Attribute value = "Condition">Condition</option>
+                    <option name = Attribute value = "Price">Price</option>
+                </select><br>= 
+        
+    	Value: <input type="text" name="Value" required> 
+
+    	<button type="submit" value="Submit">Search</button>
+</form>
+
 <h1>Products</h1>
 
 {{#each foo}}

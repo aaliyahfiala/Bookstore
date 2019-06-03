@@ -8,6 +8,21 @@
     <a href="/products_sales">Product:Sale</a>
 </div>
 
+<br>
+
+<form id="searchsales" action="/sales" method="post">
+    	Search Sales for:<br>
+        <label>Attribute:</label>
+                <select name = "Attribute" required>
+                    <option name = Attribute value = "Bookstore">Bookstore</option>
+                    <option name = Attribute value = "Customer">Customer</option>
+                </select><br>= 
+        
+    	Value: <input type="text" name="Value" required> 
+
+    	<button type="submit" value="Submit">Search</button>
+</form>
+
 <h1>Sales</h1>
 
 {{#each foo}}
