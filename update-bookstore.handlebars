@@ -1,12 +1,12 @@
 <h1>Update "{{bookstores.Name}}":</h1>
-<form id="update-bookstore">
-    Name: <input type="text" name="Name" value="{{bookstores.Name}}"><br>
-    Location: <input type="text" name="Location" value="{{bookstores.Location}}"><br>
+<form id="update-bookstore" onsubmit="updateBookstore({{bookstores.id}})">
+    Name: <input type="text" name="Name" value="{{bookstores.Name}}" required><br>
+    Location: <input type="text" name="Location" value="{{bookstores.Location}}" required><br>
     Type:
         <input type="radio" name="Type" value="New" checked>New
         <input type="radio" name="Type" value="Used">Used
         <input type="radio" name="Type" value="Both">Both<br>
     
-<button onclick="updateBookstore({{bookstores.id}})">Update</button>
+    <input type="submit" value="Update">
 </form>
 

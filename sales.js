@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getSales(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Bookstore_id`, `Customer_id`, `Product_id`, `Sale_Price`, `Sale_Date` FROM `Sale`", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Bookstore_id`, `Customer_id`, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale`", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getSale(res, mysql, context, id, complete){
-        var sql = "SELECT `id`, `Bookstore_id`, `Customer_id`, `Product_id`, `Sale_Price`, `Sale_Date` FROM `Sale` WHERE id = ?";
+        var sql = "SELECT `id`, `Bookstore_id`, `Customer_id`, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -64,8 +64,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Product_id`, `Sale_Price`, `Sale_Date`) VALUES (?,?,?,?,?)";
-        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Product_id, req.body.Sale_Price, req.body.Sale_Date];
+        var sql = "INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES (?,?,?,?,?)";
+        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Sale_Price, req.body.Sale_Date];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -80,8 +80,8 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE `Sale` SET `Bookstore_id`=?, `Customer_id`=?, `Product_id`=?, `Sale_Price`=?, `Sale_Date`=? WHERE id=?";
-        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Product_id, req.body.Sale_Price, req.body.Sale_Date, req.params.id];
+        var sql = "UPDATE `Sale` SET `Bookstore_id`=?, `Customer_id`=?, `Sale_Price`=?, `Sale_Date`=? WHERE id=?";
+        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Sale_Price, req.body.Sale_Date, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

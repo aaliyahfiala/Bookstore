@@ -1,9 +1,11 @@
+<!DOCTYPE html5>
+
 <h1>Update "{{products.Name}}":</h1>
-<form id="update-product">
-    Name: <input type="text" name="Name" value="{{products.Name}}"><br>
+<form id="update-product" onsubmit="updateProduct({{products.id}})">
+    Name: <input type="text" name="Name" value="{{products.Name}}" required><br>
     
     <label>Category:</label>
-                <select name = "Category">
+                <select name = "Category" value="{{products.Category}}" required>
                     <option name = Category value = "Novel">Novel</option>
                     <option name = Category value = "Short Story">Short Story</option>
                     <option name = Category value = "Book on CD/Tape">Book on CD/Tape</option>
@@ -13,15 +15,15 @@
                     <option name = Category value = "Other">Other</option>
                 </select><br>
     
-    Author: <input type="text" name="Author" value="{{products.Author}}"><br>
+    Author: <input type="text" name="Author" value="{{products.Author}}" required><br>
 
-    Quantity: <input type="number" name="Quantity" min=1 default=1 value="{{products.Quantity}}"><br>
+    Quantity: <input type="number" name="Quantity" min="1" default="1" value="{{products.Quantity}}" required><br>
 
     Condition: 
         <input type="radio" name="Condition" value="New" checked>New
         <input type="radio" name="Condition" value="Used">Used<br>
 
-    Price: <input type="number" name="Price" min=0 step=".01" value="{{products.Price}}"><br>
+    Price: <input type="number" name="Price" min="0.01" step=".01" value="{{products.Price}}" required><br>
 
-<button onclick="updateProduct({{products.id}})">Update</button>
+    <input type="submit"  value="Update">
 </form>

@@ -12,7 +12,8 @@ module.exports = function(){
             complete();
         });
     }
-
+    
+    
     function getProduct(res, mysql, context, id, complete){
         var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE id = ?";
         var inserts = [id];
@@ -43,6 +44,7 @@ module.exports = function(){
         }
     });
 
+    
     /* Display one product for the specific purpose of updating products */
 
     router.get('/:id', function(req, res){
@@ -82,7 +84,6 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE `Product` SET `Name`=?, `Category`=?, `Author`=?, `Quantity`=?, `Condition`=?, `Price`=? WHERE id=?";
         var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price, req.params.id];
-        console.log(inserts);
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

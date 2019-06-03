@@ -61,8 +61,8 @@ DROP TABLE IF EXISTS `Customer`;
 CREATE TABLE `Customer` (
   `id` int(11) AUTO_INCREMENT NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Address` varchar(255),
-  `Phone` varchar(255),
+  `Address` varchar(255) NOT NULL,
+  `Phone` varchar(255) NOT NULL,
     
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -72,10 +72,10 @@ CREATE TABLE `Customer` (
 --
 
 INSERT INTO `Customer` (`Name`, `Address`, `Phone`) VALUES
-('Batman', 'Batcave', '(800)123-4567'),
-('Luke Skywalker', 'Tatooine', '(700)123-4567'),
-('Matt Damon','Hollywood', '(900)123-4567'),
-('John Doe', 'Who knows', '(600)123-4567');
+('Batman', 'Batcave', '800-123-4567'),
+('Luke Skywalker', 'Tatooine', '700-123-4567'),
+('Matt Damon','Hollywood', '900-123-4567'),
+('John Doe', 'Who knows', '600-123-4567');
 
 -- --------------------------------------------------------
 
@@ -88,10 +88,10 @@ DROP TABLE IF EXISTS `Product`;
 CREATE TABLE `Product` (
   `id` int(11) AUTO_INCREMENT NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `Category` varchar(255) DEFAULT NULL,
-  `Author` varchar(255) DEFAULT NULL,
-  `Quantity` int(11) DEFAULT NULL,
-  `Condition` varchar(255) DEFAULT NULL,
+  `Category` varchar(255) NOT NULL,
+  `Author` varchar(255) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Condition` varchar(255) NOT NULL,
   `Price` decimal(5,2) NOT NULL,
     
     PRIMARY KEY (id)
@@ -173,9 +173,8 @@ CREATE TABLE `Sale` (
   `id` int(11) AUTO_INCREMENT NOT NULL,
   `Bookstore_id` int(11) NOT NULL,
   `Customer_id` int(11) NOT NULL,
-  `Product_id` int(11) NOT NULL,
-  `Sale_Price` decimal(5,2) DEFAULT NULL,
-  `Sale_Date` date DEFAULT NULL,
+  `Sale_Price` decimal(5,2) NOT NULL,
+  `Sale_Date` date NOT NULL,
     
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -184,10 +183,10 @@ CREATE TABLE `Sale` (
 -- Dumping data for table `Sale`
 --
 
-INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Product_id`, `Sale_Price`, `Sale_Date`) VALUES
-(1, 2, 2, '3.99', '2019-05-13'),
-(2, 1, 1, '14.99', '2019-05-13'),
-(1, 2, 3, '5.00', '2019-05-13');
+INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES
+(1, 2, '3.99', '2019-05-13'),
+(2, 1, '14.99', '2019-05-13'),
+(1, 2, '5.00', '2019-05-13');
 
 --
 -- Indexes for dumped tables

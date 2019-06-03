@@ -1,10 +1,9 @@
 <h1>Update Sale #"{{sales.id}}":</h1>
-<form id="update-sale">
-    Bookstore ID: <input type="number" name="Bookstore_id" min=1 value="{{sales.Bookstore_id}}"><br>
-    Customer ID: <input type="number" name="Customer_id" min=1 value="{{sales.Customer_id}}"><br>
-    Product ID: <input type="number" name="Product_id" min=1 value="{{sales.Product_id}}"><br>
-    Sale Price: <input type="number" min=0 step=".01" name="Sale_Price" value="{{sales.Sale_Price}}"><br>
-    Sale Date: <input type="date" name="Sale_Date" value="{{sales.Sale_Date}}"><br>
+<form id="update-sale" onsubmit="updateSale({{sales.id}})">
+    Bookstore ID: <input type="number" name="Bookstore_id" min=1 value="{{sales.Bookstore_id}}" required><br>
+    Customer ID: <input type="number" name="Customer_id" min=1 value="{{sales.Customer_id}}" required><br>
+    Sale Price: <input type="number" min=0 step=".01" name="Sale_Price" value="{{sales.Sale_Price}}" required><br>
+    Sale Date: <input type="date" name="Sale_Date" value="{{sales.Sale_Date}}" required><br>
     
-<button onclick="updateSale({{sales.id}})">Update</button>
+    <input type="submit" value="Update">
 </form>
