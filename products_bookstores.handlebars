@@ -10,24 +10,21 @@
 
 <br>
 
-<form id="searchproducts_bookstores" action="/products_bookstores" method="post">
+<form id="searchproducts_bookstores" action="/products_bookstores/search/" method="get">
     	Search Product:Bookstore Relationship for:<br>
         <label>Attribute:</label>
-                <select name = "Attribute" required>
-                    <option name = Attribute value = "Product">Product</option>
-                    <option name = Attribute value = "Bookstore">Bookstore</option>
+                <select name="Attribute" required>
+                    <option name=Attribute value="pName">Product</option>
+                    <option name=Attribute value="bName">Bookstore</option>
                 </select><br>= 
         
-    	Value: <input type="text" name="Value" required> 
+    	Value: <input type="text" name="searchFor" required> 
 
     	<button type="submit" value="Submit">Search</button>
 </form>
 
 <h1>Product:Bookstore Relationships</h1>
 
-{{#each foo}}
-{{this}}
-{{/each}}
 <table border=1px >
     <thead> 
         <th>Product</th>
@@ -36,8 +33,8 @@
     </thead> 
     <tbody> 
         <tr>
-        <td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
+        <td nowrap>sort by:<br><button onclick="window.location.href='/products_bookstores/sort/1'">Asc</button><button onclick="window.location.href='/products_bookstores/sort/2'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products_bookstores/sort/3'">Asc</button><button onclick="window.location.href='/products_bookstores/sort/4'">Desc</button></td>
 	</tr>
 
 	{{#each products_bookstores}} 

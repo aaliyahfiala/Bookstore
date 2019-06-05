@@ -10,24 +10,21 @@
 
 <br>
 
-<form id="searchsales" action="/sales" method="post">
+<form id="searchsales" action="/sales/search/" method="get">
     	Search Sales for:<br>
         <label>Attribute:</label>
-                <select name = "Attribute" required>
-                    <option name = Attribute value = "Bookstore">Bookstore</option>
-                    <option name = Attribute value = "Customer">Customer</option>
+                <select name="Attribute" required>
+                    <option name=Attribute value="BName">Bookstore</option>
+                    <option name=Attribute value="CName">Customer</option>
                 </select><br>= 
         
-    	Value: <input type="text" name="Value" required> 
+    	Value: <input type="text" name="searchFor" required> 
 
     	<button type="submit" value="Submit">Search</button>
 </form>
 
 <h1>Sales</h1>
 
-{{#each foo}}
-{{this}}
-{{/each}}
 <table border=1px >
     <thead> 
         <th>ID:</th>
@@ -39,11 +36,11 @@
     </thead> 
     <tbody> 
         <tr>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/sales/sort/1'">Asc</button><button onclick="window.location.href='/sales/sort/2'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/sales/sort/3'">Asc</button><button onclick="window.location.href='/sales/sort/4'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/sales/sort/5'">Asc</button><button onclick="window.location.href='/sales/sort/6'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/sales/sort/7'">Asc</button><button onclick="window.location.href='/sales/sort/8'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/sales/sort/9'">Asc</button><button onclick="window.location.href='/sales/sort/10'">Desc</button></td>
 	</tr>
 
 	{{#each sales}} 

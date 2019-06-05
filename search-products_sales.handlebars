@@ -1,0 +1,42 @@
+<div align="center">
+    <a href="/home">Home</a>
+    <a href="/products">Products</a>
+    <a href="/bookstores">Bookstores</a>
+    <a href="/customers">Customers</a>
+    <a href="/sales">Sales</a>
+    <a href="/products_bookstores">Product:Bookstore</a>
+    <a href="/products_sales">Product:Sale</a>
+</div>
+
+<br>
+
+<form id="searchproducts_sales" action="/products_sales/search/" method="get">
+    	Search Product:Sale Relationship for:<br>
+        <label>Attribute:</label>
+                <select name="Attribute" required>
+                    <option name=Attribute value="pName">Product</option>
+                    <option name=Attribute value="sid">Sale #</option>
+                </select><br>= 
+        
+    	Value: <input type="text" name="searchFor" required> 
+
+    	<button type="submit" value="Submit">Search</button>
+</form>
+
+<h1>Product:Sale Relationships</h1>
+
+<table border=1px >
+    <thead> 
+        <th>Product</th>
+	    <th>Sale</th>   
+    </thead> 
+    <tbody> 
+
+	{{#each products_sales}} 
+        <tr> 
+            <td>{{pName}}</td> 
+            <td>{{sid}}</td> 
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    </table>

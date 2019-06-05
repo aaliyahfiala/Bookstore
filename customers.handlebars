@@ -10,18 +10,20 @@
 
 <br>
 
-<form id="searchcustomers" action="/customers" method="post">
-    	Search Customers for "Name"<br>
-    	= Value: <input type="text" name="Value" required> 
+<form id="searchcustomers" action="/customers/search/" method="get">
+    	Search Customers for:<br>
+        <label>Attribute:</label>
+                <select name="Attribute" required>
+                    <option name="Attribute" value="Name">Name</option>
+                    <option name="Attribute" value="Address">Address</option>
+                </select><br>=
+    	Value: <input type="text" name="searchFor" required> 
 
     	<button type="submit" value="Submit">Search</button>
 </form>
 
 <h1>Customers</h1>
 
-{{#each foo}}
-{{this}}
-{{/each}}
 <table border=1px >
     <thead> 
        <th>ID:</th>
@@ -32,10 +34,10 @@
     </thead> 
     <tbody> 
         <tr>
-		  <td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		  <td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-          <td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		  <td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
+		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/1'">Asc</button><button onclick="window.location.href='/customers/sort/2'">Desc</button></td>
+		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/3'">Asc</button><button onclick="window.location.href='/customers/sort/4'">Desc</button></td>
+          <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/5'">Asc</button><button onclick="window.location.href='/customers/sort/6'">Desc</button></td>
+		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/7'">Asc</button><button onclick="window.location.href='/customers/sort/8'">Desc</button></td>
 	    </tr>
 
 	{{#each customers}} 

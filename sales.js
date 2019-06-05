@@ -12,6 +12,150 @@ module.exports = function(){
             complete();
         });
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function getSalesIDAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale.id ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesIDDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale.id DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesBNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Bookstore_Name ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesBNameDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Bookstore_Name DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesCNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Customer_Name ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesCNameDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Customer_Name DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesPriceAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale_Price ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesPriceDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale_Price DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesDateAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale_Date ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    function getSalesDateDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale_Date DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    
+    
+    function getSaleSearch(res, mysql, attribute, searchFor, context, complete){
+        if (attribute == "BName") {
+            var sql = "SELECT * FROM (SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id) as table1 WHERE Bookstore_Name = ?";
+        } 
+        else if (attribute == "CName") {
+            var sql = "SELECT * FROM (SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id) AS table2 WHERE Customer_Name = ?";
+        }
+        var inserts = [searchFor];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    
+    
+    
+    
+    
 
     function getSale(res, mysql, context, id, complete){
         var sql = "SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id WHERE Sale.id = ?";
@@ -43,6 +187,200 @@ module.exports = function(){
         }
     });
 
+    
+    
+    
+    
+    
+    
+    
+    
+    /* Display sales in ascending order by ID */
+
+    router.get('/sort/1', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesIDAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in Descending order by ID */
+
+    router.get('/sort/2', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesIDDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in ascending order by bookstore name */
+
+    router.get('/sort/3', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesBNameAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in Descending order by bookstore name */
+
+    router.get('/sort/4', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesBNameDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in ascending order by customer name */
+
+    router.get('/sort/5', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesCNameAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in Descending order by customer name */
+
+    router.get('/sort/6', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesCNameDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in ascending order by price */
+
+    router.get('/sort/7', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesPriceAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in Descending order by price */
+
+    router.get('/sort/8', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesPriceDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in ascending order by date */
+
+    router.get('/sort/9', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesDateAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    /* Display sales in Descending order by date */
+
+    router.get('/sort/10', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getSalesDateDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('sales', context);
+            }
+
+        }
+    });
+    
+    
+    
+    
+    
+    /* Search for sale with specific attribute: value */
+
+    router.get('/search/', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        var attribute = req.query.Attribute;
+        var searchFor = req.query.searchFor;
+        getSaleSearch(res, mysql, attribute, searchFor, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('search-sales', context);
+            }
+
+        }
+    });
+    
+    
+    
+    
+
     /* Display one sale for the specific purpose of updating sales */
 
     router.get('/:id', function(req, res){
@@ -64,7 +402,7 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES (?,?,?,?,?)";
+        var sql = "INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES (?,?,?,?)";
         var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Sale_Price, req.body.Sale_Date];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){

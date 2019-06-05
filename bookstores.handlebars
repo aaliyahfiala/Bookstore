@@ -10,25 +10,22 @@
 
 <br>
 
-<form id="searchbookstores" action="/bookstores" method="post">
+<form id="searchbookstores" action="/bookstores/search" method="get">
     	Search Bookstores for:<br>
         <label>Attribute:</label>
-                <select name = "Attribute" required>
-                    <option name = Attribute value = "Name">Name</option>
-                    <option name = Attribute value = "Location">Location</option>
-                    <option name = Attribute value = "Type">Type</option>
+                <select name="Attribute" required>
+                    <option name=Attribute value="Name">Name</option>
+                    <option name=Attribute value="Location">Location</option>
+                    <option name=Attribute value="Type">Type</option>
                 </select><br>= 
         
-    	Value: <input type="text" name="Value" required> 
+    	Value: <input type="text" name="searchFor" required> 
 
     	<button type="submit" value="Submit">Search</button>
 </form>
 
 <h1>Bookstores</h1>
 
-{{#each foo}}
-{{this}}
-{{/each}}
 <table border=1px >
     <thead> 
         <th>ID:</th>
@@ -39,10 +36,10 @@
     </thead> 
     <tbody> 
         <tr>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/bookstores/sort/1'">Asc</button><button onclick="window.location.href='/bookstores/sort/2'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/bookstores/sort/3'">Asc</button><button onclick="window.location.href='/bookstores/sort/4'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/bookstores/sort/5'">Asc</button><button onclick="window.location.href='/bookstores/sort/6'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/bookstores/sort/7'">Asc</button><button onclick="window.location.href='/bookstores/sort/8'">Desc</button></td>
 	</tr>
 
 	{{#each bookstores}} 

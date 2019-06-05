@@ -14,6 +14,85 @@ module.exports = function(){
         });
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    function getProducts_BookstoresPNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id ORDER BY pName ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products_bookstores = results;
+            complete();
+        });
+    }
+    
+    function getProducts_BookstoresPNameDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id ORDER BY pName DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products_bookstores = results;
+            complete();
+        });
+    }
+    
+    function getProducts_BookstoresBNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id ORDER BY bName ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products_bookstores = results;
+            complete();
+        });
+    }
+    
+    function getProducts_BookstoresBNameDesc(res, mysql, context, complete){
+        mysql.pool.query("SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id ORDER BY bName DESC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products_bookstores = results;
+            complete();
+        });
+    }
+    
+    
+    
+    
+    
+    function getProduct_BookstoreSearch(res, mysql, attribute, searchFor, context, complete){
+        if (attribute == "pName") {
+            var sql = "SELECT * FROM (SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id) AS table1 WHERE `pName` = ?";
+        } 
+        else if (attribute == "bName") {
+            var sql = "SELECT * FROM (SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id) AS table2 WHERE `bName` = ?";
+        }
+        var inserts = [searchFor];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products_bookstores = results;
+            complete();
+        });
+    }
+    
+    
+    
+    
+    
+
     function getProduct_Bookstore(res, mysql, context, id, complete){
         var sql = "SELECT Product.id AS pid, Product.Name AS `pName` , Bookstore.id AS bid, Bookstore.Name AS `bName` FROM `Product` INNER JOIN Product_Bookstore ON Product_Bookstore.product_id=Product.id INNER JOIN `Bookstore` ON Bookstore.id=Product_Bookstore.bookstore_id WHERE (Product.id = ? AND Bookstore.id = ?";
         var inserts = [id];
@@ -44,6 +123,104 @@ module.exports = function(){
 
         }
     });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* Display products_bookstores in ascending order by product name */
+
+    router.get('/sort/1', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getProducts_BookstoresPNameAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('products_bookstores', context);
+            }
+
+        }
+    });
+    
+    /* Display products_bookstores in Descending order by product name */
+
+    router.get('/sort/2', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getProducts_BookstoresPNameDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('products_bookstores', context);
+            }
+
+        }
+    });
+    
+    /* Display products_bookstores in ascending order by bookstore name */
+
+    router.get('/sort/3', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getProducts_BookstoresBNameAsc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('products_bookstores', context);
+            }
+
+        }
+    });
+    
+    /* Display products_bookstores in Descending order by bookstore name */
+
+    router.get('/sort/4', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        getProducts_BookstoresBNameDesc(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('products_bookstores', context);
+            }
+
+        }
+    });
+    
+    
+    
+    
+    
+     /* Search for product_bookstore with specific attribute: value */
+
+    router.get('/search/', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        var attribute = req.query.Attribute;
+        var searchFor = req.query.searchFor;
+        getProduct_BookstoreSearch(res, mysql, attribute, searchFor, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('search-products_bookstores', context);
+            }
+
+        }
+    });
+    
+    
+    
+    
 
     /* Display one product_bookstore for the specific purpose of updating products_bookstores */
 

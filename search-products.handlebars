@@ -1,0 +1,58 @@
+<!DOCTYPE html5>
+
+<div align="center">
+    <a href="/home">Home</a>
+    <a href="/products">Products</a>
+    <a href="/bookstores">Bookstores</a>
+    <a href="/customers">Customers</a>
+    <a href="/sales">Sales</a>
+    <a href="/products_bookstores">Product:Bookstore</a>
+    <a href="/products_sales">Product:Sale</a>
+</div>
+
+<br>
+
+<form id="searchproducts" action="/products/search/" method="get">
+    	Search Products for:<br>
+        <label>Attribute:</label>
+                <select name="Attribute" required>
+                    <option name="Attribute" value="Name">Name</option>
+                    <option name="Attribute" value="Category">Category</option>
+                    <option name="Attribute" value="Author">Author</option>
+                    <option name="Attribute" value="Quantity">Quantity</option>
+                    <option name="Attribute" value="Condition">Condition</option>
+                    <option name="Attribute" value="Price">Price</option>
+                </select><br>= 
+        
+    	Value: <input type="text" name="searchFor" required> 
+
+    	<button type="submit" value="Submit">Search</button>
+</form>
+
+<h1>Products</h1>
+
+<table border=1px >
+    <thead> 
+        <th>ID:</th>
+	    <th>Name</th> 
+        <th>Category</th> 
+        <th>Author</th>
+        <th>Quantity</th>
+	    <th>Condition</th>
+	    <th>Price</th>
+    </thead> 
+    <tbody> 
+        
+	{{#each products}} 
+        <tr> 
+            <td>{{id}}</td> 
+            <td>{{Name}}</td> 
+            <td>{{Category}}</td> 
+            <td>{{Author}}</td>
+            <td>{{Quantity}}</td>
+            <td>{{Condition}}</td>
+            <td>{{Price}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    </table>

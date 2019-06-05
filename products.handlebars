@@ -12,28 +12,25 @@
 
 <br>
 
-<form id="searchproducts" action="/products" method="post">
+<form id="searchproducts" action="/products/search/" method="get">
     	Search Products for:<br>
         <label>Attribute:</label>
-                <select name = "Attribute" required>
-                    <option name = Attribute value = "Name">Name</option>
-                    <option name = Attribute value = "Category">Category</option>
-                    <option name = Attribute value = "Author">Author</option>
-                    <option name = Attribute value = "Quantity">Quantity</option>
-                    <option name = Attribute value = "Condition">Condition</option>
-                    <option name = Attribute value = "Price">Price</option>
+                <select name="Attribute" required>
+                    <option name="Attribute" value="Name">Name</option>
+                    <option name="Attribute" value="Category">Category</option>
+                    <option name="Attribute" value="Author">Author</option>
+                    <option name="Attribute" value="Quantity">Quantity</option>
+                    <option name="Attribute" value="Condition">Condition</option>
+                    <option name="Attribute" value="Price">Price</option>
                 </select><br>= 
         
-    	Value: <input type="text" name="Value" required> 
+    	Value: <input type="text" name="searchFor" required> 
 
     	<button type="submit" value="Submit">Search</button>
 </form>
 
 <h1>Products</h1>
 
-{{#each foo}}
-{{this}}
-{{/each}}
 <table border=1px >
     <thead> 
         <th>ID:</th>
@@ -47,13 +44,13 @@
     </thead> 
     <tbody> 
         <tr>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button onclick="sortName()">Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
-		<td nowrap>sort by:<br><button>Asc</button><button>Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/1'">Asc</button><button onclick="window.location.href='/products/sort/2'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/3'">Asc</button><button onclick="window.location.href='/products/sort/4'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/5'">Asc</button><button onclick="window.location.href='/products/sort/6'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/7'">Asc</button><button onclick="window.location.href='/products/sort/8'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/9'">Asc</button><button onclick="window.location.href='/products/sort/10'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/11'">Asc</button><button onclick="window.location.href='/products/sort/12'">Desc</button></td>
+		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/13'">Asc</button><button onclick="window.location.href='/products/sort/14'">Desc</button></td>
 	</tr>
 
 	{{#each products}} 
@@ -67,7 +64,7 @@
             <td>{{Price}}</td>
             <td><a id="Modify" href="/products/{{id}}">Update</a><button id="Remove" onclick="deleteProduct({{id}})">Delete</button></td>
         </tr> 
-        {{/each}} 
+    {{/each}} 
     </tbody> 
     </table>
 
