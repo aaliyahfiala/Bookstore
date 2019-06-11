@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getProducts(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product`", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product`", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -20,7 +20,7 @@ module.exports = function(){
     
     
     function getProductsIDAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `id` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `id` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -31,7 +31,7 @@ module.exports = function(){
     }
     
     function getProductsIDDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `id` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `id` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -42,7 +42,7 @@ module.exports = function(){
     }
     
     function getProductsNameAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -53,7 +53,7 @@ module.exports = function(){
     }
     
     function getProductsNameDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Name` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Name` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -64,7 +64,7 @@ module.exports = function(){
     }
     
     function getProductsCategoryAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Category` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Category` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -75,7 +75,7 @@ module.exports = function(){
     }
     
     function getProductsCategoryDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Category` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Category` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -87,7 +87,7 @@ module.exports = function(){
     
     
     function getProductsAuthorAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Author` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Author` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -98,7 +98,7 @@ module.exports = function(){
     }
     
     function getProductsAuthorDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Author` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Author` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -110,7 +110,7 @@ module.exports = function(){
     
     
     function getProductsQuantityAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Quantity` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Quantity` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -121,7 +121,7 @@ module.exports = function(){
     }
     
     function getProductsQuantityDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Quantity` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Quantity` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -133,7 +133,7 @@ module.exports = function(){
     
     
     function getProductsConditionAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Condition` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Condition` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -144,7 +144,7 @@ module.exports = function(){
     }
     
     function getProductsConditionDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Condition` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Condition` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -156,7 +156,7 @@ module.exports = function(){
     
     
     function getProductsPriceAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Price` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Price` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -167,7 +167,7 @@ module.exports = function(){
     }
     
     function getProductsPriceDesc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Price` DESC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Price` DESC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -185,22 +185,19 @@ module.exports = function(){
     
     function getProductSearch(res, mysql, attribute, searchFor, context, complete){
         if (attribute == "Name") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Name` = ?";
+            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE `Name` = ?";
         } 
         else if (attribute == "Category") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Category` = ?";
+            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE `Category` = ?";
         }
         else if (attribute == "Author") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Author` = ?";
-        }
-        else if (attribute == "Quantity") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Quantity` = ?";
+            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE `Author` = ?";
         }
         else if (attribute == "Condition") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Condition` = ?";
+            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE `Condition` = ?";
         }
         else if (attribute == "Price") {
-            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE `Price` = ?";
+            var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE `Price` = ?";
         }
         var inserts = [searchFor];
         mysql.pool.query(sql, inserts, function(error, results, fields){
@@ -224,7 +221,7 @@ module.exports = function(){
     
     
     function getProduct(res, mysql, context, id, complete){
-        var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` WHERE id = ?";
+        var sql = "SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -392,39 +389,6 @@ module.exports = function(){
     });
     
     
-    /* Display products in ascending order by quantity */
-
-    router.get('/sort/9', function(req, res){
-        callbackCount = 0;
-        var context = {};
-        var mysql = req.app.get('mysql');
-        getProductsQuantityAsc(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 1){
-                res.render('products', context);
-            }
-
-        }
-    });
-    
-    /* Display products in descending order by quantity */
-
-    router.get('/sort/10', function(req, res){
-        callbackCount = 0;
-        var context = {};
-        var mysql = req.app.get('mysql');
-        getProductsQuantityDesc(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 1){
-                res.render('products', context);
-            }
-
-        }
-    });
-    
-    
     /* Display products in ascending order by conditon */
 
     router.get('/sort/11', function(req, res){
@@ -547,8 +511,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO `Product` (`Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price`) VALUES (?,?,?,?,?,?)";
-        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price];
+        var sql = "INSERT INTO `Product` (`Name`, `Category`, `Author`, `Condition`, `Price`) VALUES (?,?,?,?,?)";
+        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Condition, req.body.Price];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -563,8 +527,8 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE `Product` SET `Name`=?, `Category`=?, `Author`=?, `Quantity`=?, `Condition`=?, `Price`=? WHERE id=?";
-        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Quantity, req.body.Condition, req.body.Price, req.params.id];
+        var sql = "UPDATE `Product` SET `Name`=?, `Category`=?, `Author`=?, `Condition`=?, `Price`=? WHERE id=?";
+        var inserts = [req.body.Name, req.body.Category, req.body.Author, req.body.Condition, req.body.Price, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

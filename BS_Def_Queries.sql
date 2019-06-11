@@ -48,7 +48,12 @@ INSERT INTO `Bookstore` (`Name`, `Location`, `Type`) VALUES
 ('Powell\'s Books', 'Portland, OR', 'Both'),
 ('OSU Bookstore', 'Corvallis, OR', 'Both'),
 ('Book Corner', 'Beaverton, OR', 'Used'),
-('Pacific University Bookstore', 'Forest Grove, OR', 'Both');
+('Pacific University Bookstore', 'Forest Grove, OR', 'Both'),
+('Jan\'s Paperbacks', 'Beaverton, OR', 'Used'),
+('Amazon Books', 'Portland, OR', 'Both'),
+('Literary Leftovers', 'Battle Ground, WA', 'Used'),
+('Lighthouse Book & Bible', 'Hillsboro, OR', 'Both'),
+('Things From Another World', 'Beaverton, OR', 'Both');
 
 -- --------------------------------------------------------
 
@@ -72,10 +77,12 @@ CREATE TABLE `Customer` (
 --
 
 INSERT INTO `Customer` (`Name`, `Address`, `Phone`) VALUES
-('Patricia Bonneville', '1234 SW Main St. Petersberg, NY', '533-125-4577'),
-('Mason Dixon', '1818 W. Dover Ct. Hains, VA', '556-124-4468'),
-('Larry O\'Reily','340 N Hollywood Blvd. Los Angeles, CA', '540-323-1115'),
-('Zane Laraby', '7823 SW Kangaroo St. Hampton, WY', '504-122-4492');
+('Mason Dixon', '1818 W Dover Ct. Hains, VA', '556-124-4468'),
+('Zane Laraby', '7823 SW Kangaroo St. Hampton, WY', '504-122-4492'),
+('Mason Jordan', '4700 S Cantor St. Laraby, WI', '532-145-4778'),
+('James Dixon', '8383 NW Hockins Ln. Panther, TX', '528-114-5661'),
+('Sarah McBride','210 NE Baseline St. Missoula, MO', '551-224-1211'),
+('Kennedy Harris', '881 SE Cornell Ct. Lincoln, NE', '535-358-6202');
 
 -- --------------------------------------------------------
 
@@ -90,7 +97,6 @@ CREATE TABLE `Product` (
   `Name` varchar(255) NOT NULL,
   `Category` varchar(255) NOT NULL,
   `Author` varchar(255) NOT NULL,
-  `Quantity` int(11) NOT NULL,
   `Condition` varchar(255) NOT NULL,
   `Price` decimal(5,2) NOT NULL,
     
@@ -101,11 +107,24 @@ CREATE TABLE `Product` (
 -- Dumping data for table `Product`
 --
 
-INSERT INTO `Product` (`Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price`) VALUES
-('Remember the Titans', 'DVD', 'Disney', 1, 'New', '14.99'),
-('The Grapes of Wrath', 'Novel', 'John Steinbeck', 3, 'Used', '3.99'),
-('Of Mice and Men', 'Novel', 'John Steinbeck', 2, 'Used', '5.00'),
-('The Things They Carried', 'Short Story', 'Tim O\'Brien', 1, 'New', '2.50');
+INSERT INTO `Product` (`Name`, `Category`, `Author`, `Condition`, `Price`) VALUES
+('Remember the Titans', 'DVD', 'Disney', 'New', '14.99'),
+('The Grapes of Wrath', 'Novel', 'John Steinbeck', 'Used', '3.99'),
+('Of Mice and Men', 'Novel', 'John Steinbeck', 'Used', '5.99'),
+('The Things They Carried', 'Short Story', 'Tim O\'Brien', 'New', '2.49'),
+('Anna Karenina', 'Novel', 'Leo Tolstoy', 'New', '12.99'),
+('Madame Bovary', 'Book on CD/Tape', 'Gustave Flaubert', 'Used', '4.99'),
+('War and Peace', 'Novel', 'Leo Tolstoy', 'Used', '6.99'),
+('The Great Gatsby', 'Novel', 'F. Scott Fitzgerald', 'New', '10.49'),
+('The Godfather', 'DVD', 'Francis Ford Copolla', 'New', '13.99'),
+('Pulp Fiction', 'DVD', 'Quentin Tarantino', 'New', '18.99'),
+('The Dark Knight', 'DVD', 'Christopher Nolan', 'Used', '11.99'),
+('People', 'Magazine', 'Meredith Corporation', 'New', '1.99'),
+('Time', 'Magazine', 'Time Inc.', 'New', '2.99'),
+('Reader\'s Digest', 'Magazine', 'DeWitt Wallace, Lila Wallace', 'Nes', '1.99'),
+('Hamlet', 'Other', 'William Shakespeare', 'Used', '7.49'),
+('The Cat in the Hat', 'Picture Book', 'Dr. Seuss', 'Used', '5.49');
+
 
 -- --------------------------------------------------------
 
@@ -158,8 +177,11 @@ CREATE TABLE `Product_Sale` (
 
 INSERT INTO `Product_Sale` (`product_id`, `sale_id`) VALUES
 (1, 2),
-(2, 1),
-(3, 3);
+(2, 2),
+(5, 3),
+(2, 4),
+(4, 4),
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -184,9 +206,12 @@ CREATE TABLE `Sale` (
 --
 
 INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES
-(1, 2, '3.99', '2019-05-13'),
-(2, 1, '14.99', '2019-05-14'),
-(1, 2, '5.00', '2019-05-15');
+(1, 1, '3.99', '2019-05-13'),
+(6, 1, '14.99', '2019-05-14'),
+(4, 2, '5.01', '2019-05-15'),
+(3, 2, '5.49', '2019-05-16'),
+(1, 4, '6.91', '2019-05-17'),
+(2, 3, '5.49', '2019-05-18');
 
 --
 -- Indexes for dumped tables

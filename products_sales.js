@@ -112,7 +112,7 @@ module.exports = function(){
     /*Get  all sales and products for drop-downs */
     
     function getProductsNameAsc(res, mysql, context, complete){
-        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();

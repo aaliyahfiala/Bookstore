@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getSales(res, mysql, context, complete){
-        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id", function(error, results, fields){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id ORDER BY Sale.id ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -157,7 +157,7 @@ module.exports = function(){
     
 
     function getSale(res, mysql, context, id, complete){
-        var sql = "SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id WHERE Sale.id = ?";
+        var sql = "SELECT Sale.id AS id, Sale.Bookstore_id AS Bookstore_id, Sale.Customer_id AS Customer_id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id WHERE Sale.id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -165,14 +165,23 @@ module.exports = function(){
                 res.end();
             }
             context.sales = results[0];
-            context.sales.selectedStore = context.sales.Bookstore_Name;
-            console.log(context.sales.Bookstore_Name);
             complete();
         });
     }
     
     
     /*Get  all bookstores and customers for drop-downs */
+    
+    function getBookstores(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore`", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.bookstores = results;
+            complete();
+        });
+    }
     
     function getBookstoresNameAsc(res, mysql, context, complete){
         mysql.pool.query("SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore` ORDER BY `Name` ASC", function(error, results, fields){
@@ -237,9 +246,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesIDAsc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -253,9 +264,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesIDDesc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -269,9 +282,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesBNameAsc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -285,9 +300,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesBNameDesc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -301,9 +318,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesCNameAsc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -317,9 +336,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesCNameDesc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -333,9 +354,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesPriceAsc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -349,9 +372,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesPriceDesc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -365,9 +390,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesDateAsc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -381,9 +408,11 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getSalesDateDesc(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
@@ -424,7 +453,7 @@ module.exports = function(){
         context.jsscripts = ["selectedsale.js", "updatesale.js"];
         var mysql = req.app.get('mysql');
         getSale(res, mysql, context, req.params.id, complete);
-        getBookstoresNameAsc(res, mysql, context, complete);
+        getBookstores(res, mysql, context, complete);
         getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;

@@ -48,7 +48,7 @@
             <td>{{id}}</td> 
             <td>{{Bookstore_Name}}</td> 
             <td>{{Customer_Name}}</td> 
-	        <td>{{Sale_Price}}</td>
+	        <td>${{Sale_Price}}</td>
 	        <td>{{Sale_Date}}</td>
             <td><a id="Modify" href="/sales/{{id}}">Update</a><button id="Remove" onclick="deleteSale({{id}})">Delete</button></td>
         </tr> 
@@ -63,15 +63,16 @@
         <label>Bookstore:</label>
             <select name="b_id" required>
                 {{#each bookstores}}
-                <option name=b_id value="{{id}}">{{Name}}</option>
+                    <option value="{{id}}">{{Name}}</option>
                 {{/each}}
             </select><br>
         <label>Customer:</label>
             <select name="c_id" required>
                 {{#each customers}}
-                <option name=c_id value="{{id}}">{{Name}}</option>
+                <option value="{{id}}">{{Name}}</option>
                 {{/each}}
             </select><br>
+        
     	Sale Price: <input type="number" name="Sale_Price" min=0 step=".01" required><br>
     	Date of Sale: <input type="date" name="Sale_Date" required><br> 
 

@@ -19,7 +19,6 @@
                     <option name="Attribute" value="Name">Name</option>
                     <option name="Attribute" value="Category">Category</option>
                     <option name="Attribute" value="Author">Author</option>
-                    <option name="Attribute" value="Quantity">Quantity</option>
                     <option name="Attribute" value="Condition">Condition</option>
                     <option name="Attribute" value="Price">Price</option>
                 </select><br>= 
@@ -36,7 +35,6 @@
 	    <th>Name</th> 
         <th>Category</th> 
         <th>Author</th>
-        <th>Quantity</th>
 	    <th>Condition</th>
 	    <th>Price</th>
 	    <th>Edit</th>  
@@ -46,7 +44,6 @@
 		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/3'">Asc</button><button onclick="window.location.href='/products/sort/4'">Desc</button></td>
 		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/5'">Asc</button><button onclick="window.location.href='/products/sort/6'">Desc</button></td>
 		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/7'">Asc</button><button onclick="window.location.href='/products/sort/8'">Desc</button></td>
-		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/9'">Asc</button><button onclick="window.location.href='/products/sort/10'">Desc</button></td>
 		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/11'">Asc</button><button onclick="window.location.href='/products/sort/12'">Desc</button></td>
 		<td nowrap>sort by:<br><button onclick="window.location.href='/products/sort/13'">Asc</button><button onclick="window.location.href='/products/sort/14'">Desc</button></td>
 	</tr>
@@ -56,7 +53,6 @@
             <td>{{Name}}</td> 
             <td>{{Category}}</td> 
             <td>{{Author}}</td>
-            <td>{{Quantity}}</td>
             <td>{{Condition}}</td>
             <td>{{Price}}</td>
             <td><a id="Modify" href="/products/{{id}}">Update</a><button id="Remove" onclick="deleteProduct({{id}})">Delete</button></td>
@@ -83,7 +79,6 @@
                 </select><br>
         
     	Author: <input type="text" name="Author" required><br>
-    	Quantity: <input type="number" name="Quantity" default="1" min="1" max="99" required><br>
     	
         Condition:
         <input type="radio" name="Condition" value="New" checked>New
