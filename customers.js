@@ -154,7 +154,6 @@ module.exports = function(){
         context.jsscripts = ["deletecustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomers(res, mysql, context, complete);
-        
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -352,8 +351,10 @@ module.exports = function(){
         var inserts = [req.body.Name, req.body.Address, req.body.Phone];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                res.render('error');
+                //res.redirect('/customers');
+                //res.write(JSON.stringify(error));
+                //res.end();
             }else{
                 res.redirect('/customers');
             }

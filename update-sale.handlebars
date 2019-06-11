@@ -1,7 +1,22 @@
 <h1>Update Sale #"{{sales.id}}":</h1>
 <form id="update-sale" onsubmit="updateSale({{sales.id}})">
-    Bookstore: <input type="text" name="Bookstore_Name" value="{{sales.Bookstore_Name}}" required><br>
-    Customer: <input type="text" name="Customer_Name" value="{{sales.Customer_Name}}" required><br>
+    
+    <label>Bookstore:</label>
+            <select name="b_id" required>
+                {{#each bookstores}}
+                        {{#ifEquals Name sales.Bookstore_Name }}
+                            <option name="b_id" value="{{id}}" selected>{{Name}}</option>
+                        {{else}}
+                            <option name="b_id" value="{{id}}">{{Name}}</option>
+                        {{/ifEquals}}
+                {{/each}}
+            </select><br>
+    <label>Customer:</label>
+            <select name="c_id" required>
+                {{#each customers}}
+                <option name="c_id" value={{id}}>{{Name}}</option>
+                {{/each}}
+            </select><br>
     Sale Price: <input type="number" min=0 step=".01" name="Sale_Price" value="{{sales.Sale_Price}}" required><br>
     Sale Date: <input type="date" name="Sale_Date" value="{{sales.Sale_Date}}" required><br>
     

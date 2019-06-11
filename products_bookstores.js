@@ -105,6 +105,39 @@ module.exports = function(){
             complete();
         });
     }
+    
+    
+    
+    
+    
+    
+/*Get  all bookstores and products for drop-downs */
+    
+    function getBookstoresNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore` ORDER BY `Name` ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.bookstores = results;
+            complete();
+        });
+    }
+    
+    function getProductsNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products = results;
+            complete();
+        });
+    }    
+    
+    
+    
+
 
     
     /*Display all products_bookstores. Requires web based javascript to delete users with AJAX*/
@@ -115,9 +148,11 @@ module.exports = function(){
         context.jsscripts = ["deleteproduct_bookstore.js"];
         var mysql = req.app.get('mysql');
         getProducts_Bookstores(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getProductsNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('products_bookstores', context);
             }
 
@@ -230,9 +265,11 @@ module.exports = function(){
         context.jsscripts = ["selectedproduct_bookstore.js", "updateproduct_bookstore.js"];
         var mysql = req.app.get('mysql');
         getProduct_Bookstore(res, mysql, context, req.params.product_id, req.params.bookstore_id, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getProductsNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('update-product_bookstore', context);
             }
 
@@ -244,7 +281,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO `Product_Bookstore` (`product_id`, `bookstore_id`) VALUES (?,?)";
-        var inserts = [req.body.product_id, req.body.bookstore_id];
+        var inserts = [req.body.p_id, req.body.b_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

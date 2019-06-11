@@ -51,8 +51,18 @@
 	<h3>Add New Relationship</h3>
 
     <form id="addproduct_bookstore" action="/products_bookstores" method="post">
-    	Product ID: <input type="number" name="product_id" min=1><br>
-    	Bookstore ID: <input type="number" name="bookstore_id" min=1><br>
+    	<label>Product:</label>
+            <select name="p_id" required>
+                {{#each products}}
+                <option name="p_id" value="{{id}}">{{Name}}</option>
+                {{/each}}
+            </select><br>
+    	<label>Bookstore:</label>
+            <select name="b_id" required>
+                {{#each bookstores}}
+                <option name="b_id" value="{{id}}">{{Name}}</option>
+                {{/each}}
+            </select><br>
     	
     	<button type="submit" value="Submit">Add Relationship</button>
     </form>

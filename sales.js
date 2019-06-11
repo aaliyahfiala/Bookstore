@@ -14,11 +14,7 @@ module.exports = function(){
     }
     
     
-    
-    
-    
-    
-    
+
     
     
     function getSalesIDAsc(res, mysql, context, complete){
@@ -140,6 +136,9 @@ module.exports = function(){
         else if (attribute == "CName") {
             var sql = "SELECT * FROM (SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id) AS table2 WHERE Customer_Name = ?";
         }
+        else if (attribute == "id") {
+            var sql = "SELECT * FROM (SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id) AS table2 WHERE sale.id = ?";
+        }
         var inserts = [searchFor];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -166,9 +165,42 @@ module.exports = function(){
                 res.end();
             }
             context.sales = results[0];
+            context.sales.selectedStore = context.sales.Bookstore_Name;
+            console.log(context.sales.Bookstore_Name);
             complete();
         });
     }
+    
+    
+    /*Get  all bookstores and customers for drop-downs */
+    
+    function getBookstoresNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Location`, `Type` FROM `Bookstore` ORDER BY `Name` ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.bookstores = results;
+            complete();
+        });
+    }
+    
+    function getCustomersNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Address`, `Phone` FROM `Customer` ORDER BY `Name` ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.customers = results;
+            complete();
+        });
+    }
+    
+    
+    
+    
+    
+    
 
     /*Display all sales. Requires web based javascript to delete sales with AJAX*/
 
@@ -178,15 +210,18 @@ module.exports = function(){
         context.jsscripts = ["deletesale.js"];
         var mysql = req.app.get('mysql');
         getSales(res, mysql, context, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('sales', context);
             }
 
         }
     });
 
+    
     
     
     
@@ -389,9 +424,11 @@ module.exports = function(){
         context.jsscripts = ["selectedsale.js", "updatesale.js"];
         var mysql = req.app.get('mysql');
         getSale(res, mysql, context, req.params.id, complete);
+        getBookstoresNameAsc(res, mysql, context, complete);
+        getCustomersNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('update-sale', context);
             }
 
@@ -403,7 +440,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES (?,?,?,?)";
-        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Sale_Price, req.body.Sale_Date];
+        var inserts = [req.body.b_id, req.body.c_id, req.body.Sale_Price, req.body.Sale_Date];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -419,7 +456,7 @@ module.exports = function(){
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE `Sale` SET `Bookstore_id`=?, `Customer_id`=?, `Sale_Price`=?, `Sale_Date`=? WHERE id=?";
-        var inserts = [req.body.Bookstore_id, req.body.Customer_id, req.body.Sale_Price, req.body.Sale_Date, req.params.id];
+        var inserts = [req.body.b_id, req.body.c_id, req.body.Sale_Price, req.body.Sale_Date, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

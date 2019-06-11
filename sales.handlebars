@@ -27,7 +27,7 @@
 
 <table border=1px >
     <thead> 
-        <th>ID:</th>
+        <th>Sale #:</th>
 	    <th>Bookstore</th> 
         <th>Customer</th> 
         <th>Sale Price</th>
@@ -60,8 +60,18 @@
 	<h3>Add New Sale</h3>
 
     <form id="addsale" action="/sales" method="post">
-    	Bookstore ID: <input type="number" name="Bookstore_id" min=1 required><br>
-    	Customer ID: <input type="number" name="Customer_id" min=1 required><br>
+        <label>Bookstore:</label>
+            <select name="b_id" required>
+                {{#each bookstores}}
+                <option name=b_id value="{{id}}">{{Name}}</option>
+                {{/each}}
+            </select><br>
+        <label>Customer:</label>
+            <select name="c_id" required>
+                {{#each customers}}
+                <option name=c_id value="{{id}}">{{Name}}</option>
+                {{/each}}
+            </select><br>
     	Sale Price: <input type="number" name="Sale_Price" min=0 step=".01" required><br>
     	Date of Sale: <input type="date" name="Sale_Date" required><br> 
 

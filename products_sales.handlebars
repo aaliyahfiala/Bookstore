@@ -51,8 +51,18 @@
 	<h3>Add New Relationship</h3>
 
     <form id="addproduct_sale" action="/products_sales" method="post">
-    	Product ID: <input type="number" name="product_id" min=1><br>
-    	Sale ID: <input type="number" name="sale_id" min=1><br>
+    	<label>Product:</label>
+            <select name="p_id" required>
+                {{#each products}}
+                <option name="p_id" value="{{id}}">{{Name}}</option>
+                {{/each}}
+            </select><br>
+    	<label>Sale:</label>
+            <select name="s_id" required>
+                {{#each sales}}
+                <option name="s_id">{{id}}</option>
+                {{/each}}
+            </select><br>
     	
     	<button type="submit" value="Submit">Add Relationship</button>
     </form>

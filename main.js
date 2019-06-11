@@ -9,6 +9,12 @@ var bodyParser = require('body-parser');
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express-handlebars').create({
+        defaultLayout:'main',
+        helpers: {
+            ifEquals: function(v1, v2, options) { if(v1 === v2) { return options.fn(this); } return options.inverse(this);},
+        }
+        });
 
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));

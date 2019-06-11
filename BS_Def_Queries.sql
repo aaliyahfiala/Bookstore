@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `Customer`;
 
 CREATE TABLE `Customer` (
   `id` int(11) AUTO_INCREMENT NOT NULL,
-  `Name` varchar(255) NOT NULL,
+  `Name` varchar(255) NOT NULL UNIQUE,
   `Address` varchar(255) NOT NULL,
   `Phone` varchar(255) NOT NULL,
     
@@ -72,10 +72,10 @@ CREATE TABLE `Customer` (
 --
 
 INSERT INTO `Customer` (`Name`, `Address`, `Phone`) VALUES
-('Batman', 'Batcave', '800-123-4567'),
-('Luke Skywalker', 'Tatooine', '700-123-4567'),
-('Matt Damon','Hollywood', '900-123-4567'),
-('John Doe', 'Who knows', '600-123-4567');
+('Patricia Bonneville', '1234 SW Main St. Petersberg, NY', '533-125-4577'),
+('Mason Dixon', '1818 W. Dover Ct. Hains, VA', '556-124-4468'),
+('Larry O\'Reily','340 N Hollywood Blvd. Los Angeles, CA', '540-323-1115'),
+('Zane Laraby', '7823 SW Kangaroo St. Hampton, WY', '504-122-4492');
 
 -- --------------------------------------------------------
 
@@ -185,8 +185,8 @@ CREATE TABLE `Sale` (
 
 INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VALUES
 (1, 2, '3.99', '2019-05-13'),
-(2, 1, '14.99', '2019-05-13'),
-(1, 2, '5.00', '2019-05-13');
+(2, 1, '14.99', '2019-05-14'),
+(1, 2, '5.00', '2019-05-15');
 
 --
 -- Indexes for dumped tables
@@ -194,9 +194,9 @@ INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VA
 --
 -- Constraints for table `Sale`
 --
-ALTER TABLE `Sale`
-  ADD CONSTRAINT `Sale_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `Customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Sale_ibfk_2` FOREIGN KEY (`Bookstore_id`) REFERENCES `Bookstore` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ALTER TABLE `Sale`
+    ADD CONSTRAINT `Sale_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `Customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Sale_ibfk_2` FOREIGN KEY (`Bookstore_id`) REFERENCES `Bookstore` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Product_Bookstore`

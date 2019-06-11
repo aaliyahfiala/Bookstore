@@ -106,6 +106,36 @@ module.exports = function(){
     }
 
     
+    
+    
+    
+    /*Get  all sales and products for drop-downs */
+    
+    function getProductsNameAsc(res, mysql, context, complete){
+        mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Quantity`, `Condition`, `Price` FROM `Product` ORDER BY `Name` ASC", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.products = results;
+            complete();
+        });
+    }
+    
+    function getSales(res, mysql, context, complete){
+        mysql.pool.query("SELECT Sale.id, Bookstore.Name AS Bookstore_Name, Customer.Name AS Customer_Name, `Sale_Price`, DATE_FORMAT(`Sale_Date`, '%M %d, %Y') AS `Sale_Date` FROM `Sale` INNER JOIN `Bookstore` ON Bookstore.id=Sale.Bookstore_id INNER JOIN `Customer` ON Customer.id=Sale.Customer_id", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sales = results;
+            complete();
+        });
+    }
+    
+    
+    
+    
     /*Display all products_sales. Requires web based javascript to delete users with AJAX*/
 
     router.get('/', function(req, res){
@@ -114,9 +144,11 @@ module.exports = function(){
         context.jsscripts = ["deleteproduct_sale.js"];
         var mysql = req.app.get('mysql');
         getProducts_Sales(res, mysql, context, complete);
+        getSales(res, mysql, context, complete);
+        getProductsNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('products_sales', context);
             }
 
@@ -228,9 +260,11 @@ module.exports = function(){
         context.jsscripts = ["selectedproduct_sale.js", "updateproduct_sale.js"];
         var mysql = req.app.get('mysql');
         getProduct_Sale(res, mysql, context, req.params.product_id, req.params.sale_id, complete);
+        getSales(res, mysql, context, complete);
+        getProductsNameAsc(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('update-product_sale', context);
             }
 
@@ -242,7 +276,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO `Product_Sale` (`product_id`, `sale_id`) VALUES (?,?)";
-        var inserts = [req.body.product_id, req.body.sale_id];
+        var inserts = [req.body.p_id, req.body.s_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

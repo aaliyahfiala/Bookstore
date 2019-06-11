@@ -26,7 +26,6 @@
 
 <table border=1px >
     <thead> 
-       <th>ID:</th>
 	   <th>Name</th> 
 	   <th>Address</th>
        <th>Phone</th>
@@ -34,15 +33,13 @@
     </thead> 
     <tbody> 
         <tr>
-		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/1'">Asc</button><button onclick="window.location.href='/customers/sort/2'">Desc</button></td>
 		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/3'">Asc</button><button onclick="window.location.href='/customers/sort/4'">Desc</button></td>
           <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/5'">Asc</button><button onclick="window.location.href='/customers/sort/6'">Desc</button></td>
 		  <td nowrap>sort by:<br><button onclick="window.location.href='/customers/sort/7'">Asc</button><button onclick="window.location.href='/customers/sort/8'">Desc</button></td>
 	    </tr>
 
 	{{#each customers}} 
-        <tr> 
-            <td>{{id}}</td> 
+        <tr>  
             <td>{{Name}}</td>
             <td>{{Address}}</td>
             <td>{{Phone}}</td>
