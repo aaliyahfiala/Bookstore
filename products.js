@@ -13,12 +13,6 @@ module.exports = function(){
         });
     }
     
-    
-    
-    
-    
-    
-    
     function getProductsIDAsc(res, mysql, context, complete){
         mysql.pool.query("SELECT `id`, `Name`, `Category`, `Author`, `Condition`, `Price` FROM `Product` ORDER BY `id` ASC", function(error, results, fields){
             if(error){
@@ -250,12 +244,6 @@ module.exports = function(){
         }
     });
 
-    
-    
-    
-    
-    
-    
     
     
     /* Display products in ascending order by ID */

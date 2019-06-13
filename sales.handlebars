@@ -50,7 +50,7 @@
             <td>{{Customer_Name}}</td> 
 	        <td>${{Sale_Price}}</td>
 	        <td>{{Sale_Date}}</td>
-            <td><a id="Modify" href="/sales/{{id}}">Update</a><button id="Remove" onclick="deleteSale({{id}})">Delete</button></td>
+            <td><button id="Remove" onclick="deleteSale({{id}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 

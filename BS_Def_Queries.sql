@@ -121,7 +121,7 @@ INSERT INTO `Product` (`Name`, `Category`, `Author`, `Condition`, `Price`) VALUE
 ('The Dark Knight', 'DVD', 'Christopher Nolan', 'Used', '11.99'),
 ('People', 'Magazine', 'Meredith Corporation', 'New', '1.99'),
 ('Time', 'Magazine', 'Time Inc.', 'New', '2.99'),
-('Reader\'s Digest', 'Magazine', 'DeWitt Wallace, Lila Wallace', 'Nes', '1.99'),
+('Reader\'s Digest', 'Magazine', 'DeWitt Wallace, Lila Wallace', 'New', '1.99'),
 ('Hamlet', 'Other', 'William Shakespeare', 'Used', '7.49'),
 ('The Cat in the Hat', 'Picture Book', 'Dr. Seuss', 'Used', '5.49');
 
@@ -222,18 +222,19 @@ INSERT INTO `Sale` (`Bookstore_id`, `Customer_id`, `Sale_Price`, `Sale_Date`) VA
   ALTER TABLE `Sale`
     ADD CONSTRAINT `Sale_ibfk_1` FOREIGN KEY (`Customer_id`) REFERENCES `Customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Sale_ibfk_2` FOREIGN KEY (`Bookstore_id`) REFERENCES `Bookstore` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    
 
 --
 -- Constraints for table `Product_Bookstore`
 --
-ALTER TABLE `Product_Bookstore`
+ ALTER TABLE `Product_Bookstore`
   ADD CONSTRAINT `Product_Bookstore_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Product_Bookstore_ibfk_2` FOREIGN KEY (`bookstore_id`) REFERENCES `Bookstore` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Product_Sale`
---
-ALTER TABLE `Product_Sale`
+
+  ALTER TABLE `Product_Sale`
   ADD CONSTRAINT `Product_Sale_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Product_Sale_ibfk_2` FOREIGN KEY (`sale_id`) REFERENCES `Sale` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
